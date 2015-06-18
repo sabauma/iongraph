@@ -66,7 +66,7 @@ class Graph(GraphWidget):
         print >> f, 'labelloc = t;'
         print >> f, 'labelfontsize = 30;'
         print >> f, 'label ="' + self.name + '";'
-        
+
         # Output graph properties.
         for p in self.props:
             print >> f, '  ' + str(p) + '=' + str(self.props[p])
@@ -78,7 +78,7 @@ class Graph(GraphWidget):
             self.writeprops(f, n)
             print >> f, ';'
         print >> f, ''
-        
+
         # Output edge list.
         for e in self.edges:
             print >> f, '  ' + e.nfrom, '->', e.nto,
@@ -171,7 +171,7 @@ def getBlockLabel(b):
     blockTitle = '<font color="white">Block %s %s</font>' % (str(b['number']), blockUseCount)
     blockTitle = '<td align="center" bgcolor="black" colspan="3">%s</td>' % blockTitle
     s += '<tr>%s</tr>' % blockTitle
-    
+
     if 'resumePoint' in b:
         s += getResumePointRow(b['resumePoint'], None)
 
@@ -207,7 +207,7 @@ def buildGraphForIR(name, ir, mir):
 
         node = Node(getBlockNodeName(bactive))
         node.addprops({'shape':'box', 'label':getBlockLabel(bactive)})
-        
+
         if 'backedge' in b['attributes']:
             node.addprops({'color':'red'})
         if 'loopheader' in b['attributes']:
@@ -219,7 +219,7 @@ def buildGraphForIR(name, ir, mir):
 
         for succ in b['successors']: # which are integers
             edge = Edge(getBlockNodeName(bactive), blockNumToNodeName(succ))
-                
+
             if len(b['successors']) == 2:
                 if succ == b['successors'][0]:
                     edge.addprops({'label':'1'})
@@ -281,7 +281,7 @@ def parenthesize(s):
                 stack.append(c)
             elif c == '}' or c == ']':
                 stack.pop()
-    
+
     while stack:
         c = stack.pop()
         if   c == '{': s += '}'
